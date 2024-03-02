@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: example-voting-app
+  labels:
+    owner: john-mwangi
+spec:
+  rules: # Name-based Virtual Hosting
+    - host: example-voting-app.com # modify this to your configured domain or add this record to your /etc/hosts pointing to the kubernetes cluster IP if you are running locally
+      http:
+       paths:
+         - backend:
+            service:
+             name: vote
+             port:
+              number: 5000
+           pathType: Prefix
+           path: /
+    - host: result.example-voting-app.com # modify this to your configured domain or add this record to your /etc/hosts pointing to the kubernetes cluster IP if you are running locally
+      http:
+       paths:
+         - backend:
+            service:
+             name: result
+             port:
+              number: 5001
+           pathType: Prefix
+           path: /
