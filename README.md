@@ -30,20 +30,20 @@ docker stack deploy --compose-file docker-stack.yml vote
 
 ## Run the app in Kubernetes
 
-The folder k8s-specifications contains the YAML specifications of the Voting App's services.
+The folder k8s-manifests contains the YAML specifications of the Voting App's services.
 
 Run the following command to create the deployments and services. Note it will create these resources in your current namespace (`default` if you haven't changed it.)
 
-```shell
-kubectl create -f k8s-specifications/
-```
+To test the ingress, make sure an ingress controller is installed/ enabled.
 
-The `vote` web app is then available on port 31000 on each host of the cluster, the `result` web app is available on port 31001.
+```shell
+kubectl create -f k8s-manifests/
+```
 
 To remove them, run:
 
 ```shell
-kubectl delete -f k8s-specifications/
+kubectl delete -f k8s-manifests/
 ```
 
 ## Architecture
